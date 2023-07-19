@@ -1,7 +1,7 @@
 
 .App { 
   text-align: center;
-  width: 80%;
+  width: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -47,18 +47,137 @@
   height: 40px
 }
 
-/* 태블릿 */
-@media (max-width: 1300px) {
+
+
+
+/* memoBoard CSS */
+.memoBoard {
+  width: 70%;
+}
+
+.memoBoardArea{
+  display: flex;
+  flex-wrap: wrap;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
+
+
+/* memoItem CSS */
+.memoItem{
+  background-color: #ffffa0;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  height: 320px;
+  padding: 10px;
+  margin: 10px 5px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+
+/* 삭제 */
+.memoItem > div:nth-child(1){
+  text-align: end;
+}
+
+.memoItem > div:nth-child(1) > button{
+  border: none;
+  background-color: transparent;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+/* 제목, 주제, 작성일 */
+.memoItem > div:nth-child(2){
+  padding: 5px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.memoItem > div:nth-child(2) > div{
+  width: 100%;
+  text-align: start;
+}
+
+.memoItem > div:nth-child(2) > div > span:first-child{
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.memoItem > div:nth-child(2) > div > span:last-child{
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+
+.memoItem > div:nth-child(2) > span{
+  font-size: 14px;
+  color: gray;
+  margin-top: 3px;
+}
+
+/* 내용 */
+.memoItem > div:nth-child(3){
+  min-height: 180px;
+  max-height: 180px;
+  padding: 10px;
+  margin: 5px 0px;
+  text-align: start;
+  overflow: auto;
+  word-wrap: break-word;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* 수정 */
+.memoItem > div:nth-child(4){
+  text-align: end;
+  margin-top: 3px;
+}
+
+.memoItem > div:nth-child(4) > button{
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: gray;
+}
+
+
+
+
+/* 미디어 쿼리 */
+@media (max-width: 1400px) {
   .App { width: 100%; }
   .MemoEditor { width: 90%; }
   .MemoEditor input { width: 82%; }
   .MemoEditor textarea { width: 97%; }
+  .memoBoard {width: 90%;}
+}
+
+/* 태블릿 */
+@media (max-width: 820px){
+  .memoBoardArea{
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+  }
 }
 
 
 /* 스마트폰 */
 @media (max-width: 480px) {
   .App { width: 100%; }
+  .memoBoardArea{
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 10px;
+  }
   .MemoEditor { width: 90%; }
   .MemoEditor input { width: 79%; }
   .MemoEditor textarea { width: 93%; }

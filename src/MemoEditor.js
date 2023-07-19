@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 
 
 
 
-const MemoEditor = () => {
+const MemoEditor = ({onCreate}) => {
+
+    /** focus할 대상 및 함수 */
+    const titleInput = useRef();
+    const contentInput = useRef();
 
 
     /** 메모 내용 State */
     const [state, setState] = useState({
-        subject : "",
+        subject : "기타",
         title : "",
         content : "",
     });
@@ -23,24 +27,35 @@ const MemoEditor = () => {
             ...state,
             [e.target.name] : e.target.value
         })
-
-        
     }
 
+    /**
+     * 작성 버튼 누르면 실행될 함수 
+     * @returns 
+     */
     const handleSubmit = () => {
 
-       
-        // 만약 주제가 선택되지 않았다면 기본값을 '기타'가 설정됨
-        if(state.subject === '') {
-
-            console.log("선택노노")
-            setState({
-                ...state,
-                subject : "기타"
-            })
+        if(state.title.length == 0) {
+            titleInput.current.focus();
+            return
         }
 
-        console.log(state)
+        if(state.content.length < 5) {
+            contentInput.current.focus();
+            return
+        }
+
+        onCreate(state.subject, state.title, state.content);
+
+        alert("메모 작성 성공!")
+
+        // 입력 폼 초기화 
+        setState({
+            subject: "기타",
+            title: "",
+            content: "",
+        });
+
     }
 
 
@@ -53,11 +68,12 @@ const MemoEditor = () => {
             <select
                 name="subject"
                 value={state.subject}
-                onChange={handleChangeState}>
-                <option>기타</option>
-                <option>쇼핑</option>
-                <option>할 일</option>
-                <option>공부</option>
+                onChange={handleChangeState}
+                >
+                <option value={"기타"}>기타</option>
+                <option value={"쇼핑"}>쇼핑</option>
+                <option value={"할 일"}>할 일</option>
+                <option value={"공부"}>공부</option>
             </select>
 
             <input 
@@ -65,6 +81,7 @@ const MemoEditor = () => {
                 placeholder="제목을 입력하세요."
                 value={state.title}
                 onChange={handleChangeState}
+                ref={titleInput}
             />
         </div>
 
@@ -75,6 +92,7 @@ const MemoEditor = () => {
                 placeholder="내용을 입력하세요."
                 value={state.content}
                 onChange={handleChangeState}
+                ref={contentInput}
             />
         </div>
 
