@@ -97,7 +97,7 @@
 
 /* memoItem CSS */
 .memoItem{
-  background-color: #ffffa0;
+  /* background-color: #ffffa0; */
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   height: 320px;
   padding: 10px;

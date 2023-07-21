@@ -39,8 +39,16 @@ const MemoItem = ({onEdit, onDelete, id, subject, title, content, writtenDate}) 
         if (window.confirm(`'${title}' 메모를 삭제하시겠습니까?`)) onDelete(id);
     }
 
+    // 메모 배경 색 설정
+    const memoBackColor = () => {
+        if(subject === "기타") return "#ffff86"
+        if(subject === "쇼핑") return  "skyblue"
+        if(subject === "할 일") return "pink"
+        if(subject === "공부") return "rgb(207, 238, 160)"
+    }
 
-    return <div className="memoItem">
+
+    return <div className="memoItem" style={{ backgroundColor: memoBackColor() }}>
         
         <div>
             <button onClick={handleDelete}>&times;</button>

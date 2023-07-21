@@ -1,10 +1,13 @@
-import { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 
 
 
 
 const MemoEditor = ({onCreate}) => {
+
+
+    useEffect(()=>{console.log("에디터 렌더")})
 
     /** focus할 대상 및 함수 */
     const titleInput = useRef();
@@ -104,4 +107,4 @@ const MemoEditor = ({onCreate}) => {
     </div>
 }
 
-export default MemoEditor;
+export default React.memo(MemoEditor);
