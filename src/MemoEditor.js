@@ -1,13 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
+import { MemoDispatchContext } from "./App";
 
 
 
 
 
-const MemoEditor = ({onCreate}) => {
+const MemoEditor = () => {
 
-
-    useEffect(()=>{console.log("에디터 렌더")})
+    // onCreate props 가져오기 
+    const { onCreate } = useContext(MemoDispatchContext);
 
     /** focus할 대상 및 함수 */
     const titleInput = useRef();

@@ -1,6 +1,10 @@
-import { useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { MemoDispatchContext } from "./App";
 
-const MemoItem = ({onEdit, onDelete, id, subject, title, content, writtenDate}) => {
+const MemoItem = ({/*onEdit, onDelete,*/ id, subject, title, content, writtenDate}) => {
+
+    // onDelete, onEdit 받아오기 
+    const { onDelete, onEdit } = useContext(MemoDispatchContext);
 
     // 현재 내용이 수정중인지 아닌지 값을 보관할 State
     const [isEdit, setIsEdit] = useState(false);
@@ -96,4 +100,4 @@ const MemoItem = ({onEdit, onDelete, id, subject, title, content, writtenDate}) 
     </div>
 }
 
-export default MemoItem;
+export default React.memo(MemoItem);
